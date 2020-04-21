@@ -4,21 +4,23 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
 
-public class PostJson {
-    public String postJson(String json, String path) {
+public class YoutubeApiClient {
+    public String youtubeApiClient (String param, String path) {
         HttpsURLConnection uc;
         try {
-            URL url = new URL(path);
+            URL url = new URL(path+param);
             uc = (HttpsURLConnection) url.openConnection();
-            uc.setRequestMethod("POST");
+            uc.setRequestMethod("GET");
             uc.setUseCaches(false);
             uc.setDoOutput(true);
-            uc.setRequestProperty("Content-Type", "application/json");
+            //uc.setRequestProperty("Content-Type", "application/json");
+/*
 
             OutputStreamWriter out = new OutputStreamWriter(
                     new BufferedOutputStream(uc.getOutputStream()));
-            out.write(json);
+            out.write();
             out.close();
+*/
 
             BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
             String line = in.readLine();
