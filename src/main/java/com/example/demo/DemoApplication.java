@@ -8,8 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
+
         SlackPostJson p = new SlackPostJson();
         String path = "https://hooks.slack.com/services/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";
+
         String json = "{\"text\":\"Test Message\"}";
 /*
         String path = "https://slack.com/api/chat.postMessage";
@@ -24,6 +26,5 @@ public class DemoApplication {
 
         System.out.println(path + '\n' + json);
         System.out.println(p.slackPostJson(json, path));
-
     }
 }
