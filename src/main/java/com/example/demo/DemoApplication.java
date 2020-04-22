@@ -15,7 +15,7 @@ public class DemoApplication {
                 "&chart=mostPopular" +
                 "&maxResults=1";
 
-        System.out.println(path+youtubeApiUrl);
+        System.out.println(youtubeApiUrl+param);
         String json = y.youtubeApiClient(param, youtubeApiUrl);
         System.out.println("Youtube return:" + json);
 
