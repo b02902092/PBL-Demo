@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.URL;
 
 public class YoutubeApiClient {
-    public String youtubeApiClient (String param, String path) {
+    public String getVideo (String param, String path) {
         HttpsURLConnection uc;
         try {
             URL url = new URL(path + param);
@@ -16,6 +16,7 @@ public class YoutubeApiClient {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+        
         try(BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()))) {
             String line = in.readLine();
             String body = "";

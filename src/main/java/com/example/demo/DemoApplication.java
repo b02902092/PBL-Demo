@@ -16,7 +16,7 @@ public class DemoApplication {
                 "&maxResults=1";
 
         System.out.println(youtubeApiUrl+param);
-        String json = y.youtubeApiClient(param, youtubeApiUrl);
+        String json = y.getVideo(param, youtubeApiUrl);
         System.out.println("Youtube return:" + json);
 
         SlackApiClient slackApiClient = new SlackApiClient();
