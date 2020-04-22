@@ -8,21 +8,15 @@ public class YoutubeApiClient {
     public String youtubeApiClient (String param, String path) {
         HttpsURLConnection uc;
         try {
-            URL url = new URL(path+param);
+            URL url = new URL(path + param);
             uc = (HttpsURLConnection) url.openConnection();
             uc.setRequestMethod("GET");
             uc.setUseCaches(false);
             uc.setDoOutput(true);
-            //uc.setRequestProperty("Content-Type", "application/json");
-/*
-
-            OutputStreamWriter out = new OutputStreamWriter(
-                    new BufferedOutputStream(uc.getOutputStream()));
-            out.write();
-            out.close();
-*/
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        try(BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()))) {
             String line = in.readLine();
             String body = "";
             while (line != null) {
@@ -31,10 +25,8 @@ public class YoutubeApiClient {
             }
             uc.disconnect();
             return body;
-
         } catch (IOException e) {
-            e.printStackTrace();
-            return "client - IOException : " + e.getMessage();
+            throw new UncheckedIOException(e);
         }
     }
 }
