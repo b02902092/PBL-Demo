@@ -4,8 +4,8 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
 
-public class SlackPostJson {
-    public String slackPostJson(String json, String path) {
+public class SlackApiClient {
+    public String postMessage(String json, String path) {
         HttpsURLConnection uc;
         try {
             URL url = new URL(path);
@@ -14,13 +14,18 @@ public class SlackPostJson {
             uc.setUseCaches(false);
             uc.setDoOutput(true);
             uc.setRequestProperty("Content-Type", "application/json");
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
 
-            OutputStreamWriter out = new OutputStreamWriter(
-                    new BufferedOutputStream(uc.getOutputStream()));
+        try (OutputStreamWriter out = new OutputStreamWriter(
+                new BufferedOutputStream(uc.getOutputStream()))) {
             out.write(json);
-            out.close();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()))) {
             String line = in.readLine();
             String body = "";
             while (line != null) {
@@ -29,10 +34,10 @@ public class SlackPostJson {
             }
             uc.disconnect();
             return body;
-
         } catch (IOException e) {
-            e.printStackTrace();
-            return "client - IOException : " + e.getMessage();
+            throw new UncheckedIOException(e);
         }
+
+
     }
 }

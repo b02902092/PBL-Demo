@@ -1,21 +1,25 @@
 package com.example.demo;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.io.*;
 
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
 
-        SlackPostJson p = new SlackPostJson();
-        String path = "https://hooks.slack.com/services/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";
+        SlackApiClient slackApiClient = new SlackApiClient();
 
+        String incomeWebhookUrl = args[0];
         String json = "{\"text\":\"Test Message\"}";
+
+        System.out.println(incomeWebhookUrl + '\n' + json);
+        System.out.println(slackApiClient.postMessage(json, incomeWebhookUrl));
+
 /*
         String path = "https://slack.com/api/chat.postMessage";
-        String token = "xoxb-2451879749-1066005771747-mXYRM6xNKqJUXizAieKqAA79";
+        String token = "";
         String user = "lai.ting.wei";
         String json = "{" +
                 "\"token\"=\"" + token + "\"," +
@@ -23,8 +27,6 @@ public class DemoApplication {
                 "\"text\"=\"" + "Hello World!" + "\"," +
                 "\"as_user\"=\"1\"" +
                 "}";*/
-
-        System.out.println(path + '\n' + json);
-        System.out.println(p.slackPostJson(json, path));
+        System.out.println("Finish");
     }
 }
