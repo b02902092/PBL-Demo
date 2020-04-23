@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.URL;
 
 public class YoutubeApiClient {
-    public String getVideos (URL url) {
+    public static String getVideos (URL url) {
         HttpsURLConnection uc;
         try {
             uc = (HttpsURLConnection) url.openConnection();
