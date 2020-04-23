@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.UnknownHostException;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -14,10 +17,17 @@ public class DemoApplication {
                 "&key=" + args[1] +
                 "&chart=mostPopular" +
                 "&maxResults=1";
+        URL youtubeGetVideosUrl = null;
+        String json = "";
 
-        System.out.println(youtubeApiUrl+param);
-        String json = youtubeApiClient.getVideos(param, youtubeApiUrl);
-        System.out.println("Youtube return:" + json);
+        try {
+            youtubeGetVideosUrl = new URL(youtubeApiUrl + param);
+            System.out.println(youtubeGetVideosUrl.toString());
+            json = youtubeApiClient.getVideos(youtubeGetVideosUrl);
+            System.out.println("Youtube return:" + json);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(); //ここは何を投げればいいですか？
+        }
 
         SlackApiClient slackApiClient = new SlackApiClient();
 
