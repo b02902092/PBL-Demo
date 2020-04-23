@@ -8,7 +8,7 @@ import java.io.*;
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
-        YoutubeApiClient y = new YoutubeApiClient();
+        YoutubeApiClient youtubeApiClient = new YoutubeApiClient();
         String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
         String param = "?part=id" +
                 "&key=" + args[1] +
@@ -16,7 +16,7 @@ public class DemoApplication {
                 "&maxResults=1";
 
         System.out.println(youtubeApiUrl+param);
-        String json = y.getVideo(param, youtubeApiUrl);
+        String json = youtubeApiClient.getVideos(param, youtubeApiUrl);
         System.out.println("Youtube return:" + json);
 
         SlackApiClient slackApiClient = new SlackApiClient();
