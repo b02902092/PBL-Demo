@@ -6,8 +6,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class YoutubeApiClient {
+
+    private static final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
     public static String getVideos (String param) {
-        final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
 
         URL url = null;
         try {
