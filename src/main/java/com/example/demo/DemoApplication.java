@@ -14,7 +14,6 @@ import java.net.UnknownHostException;
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
-        YoutubeApiClient youtubeApiClient = new YoutubeApiClient();
         int maxResult = 5; //Youtubeに返事した人気動画の数です。デフォルトで5にしておきます。
         String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
         String param = "?part=id" +
@@ -28,7 +27,7 @@ public class DemoApplication {
         YoutubeApiJson youtubeApiJson = null;
         try {
             youtubeGetVideosUrl = new URL(youtubeApiUrl + param);
-            json = youtubeApiClient.getVideos(youtubeGetVideosUrl);
+            json = YoutubeApiClient.getVideos(youtubeGetVideosUrl);
 
             ObjectMapper mapper = new ObjectMapper();
             youtubeApiJson = mapper.readValue(json, YoutubeApiJson.class);
