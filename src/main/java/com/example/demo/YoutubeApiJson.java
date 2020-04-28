@@ -5,16 +5,79 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class YoutubeApiJson {
     public class PageInfo {
-        public int totalResults;
-        public int resultsPerPage;
+        private int totalResults;
+        private int resultsPerPage;
+
+        public int getTotalResults() {
+            return totalResults;
+        }
+
+        public int getResultsPerPage() {
+            return resultsPerPage;
+        }
+
+        public void setTotalResults(int totalResults) {
+            this.totalResults = totalResults;
+        }
+
+        public void setResultsPerPage(int resultsPerPage) {
+            this.resultsPerPage = resultsPerPage;
+        }
     }
-    public String kind;
-    public String etag;
-    public String nextPageToken;
-    public String prevPageToken;
-    public PageInfo pageInfo;
+    private String kind;
+    private String etag;
+    private String nextPageToken;
+    private String prevPageToken;
+    private PageInfo pageInfo;
     @JsonProperty("items")
-    public YoutubeVideoJson[] youtubeVideoJsons;
+    private YoutubeVideoJson[] youtubeVideoJsons;
+
+    public void setKind (String kind) {
+        this.kind = kind;
+    }
+
+    public void setEtag(String etag) {
+        this.etag = etag;
+    }
+
+    public void setNextPageToken(String nextPageToken) {
+        this.nextPageToken = nextPageToken;
+    }
+
+    public void setPrevPageToken(String prevPageToken) {
+        this.prevPageToken = prevPageToken;
+    }
+
+    public void setPageInfo(PageInfo pageInfo) {
+        this.pageInfo = pageInfo;
+    }
+
+    public void setYoutubeVideoJsons(YoutubeVideoJson[] youtubeVideoJsons) {
+        this.youtubeVideoJsons = youtubeVideoJsons;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+    public String getEtag() {
+        return etag;
+    }
+
+    public String getNextPageToken() {
+        return nextPageToken;
+    }
+
+    public String getPrevPageToken() {
+        return prevPageToken;
+    }
+
+    public PageInfo getPageInfo() {
+        return pageInfo;
+    }
+    public YoutubeVideoJson[] getYoutubeVideoJsons() {
+        return youtubeVideoJsons;
+    }
+
 
     @Override
     public String toString() {

@@ -52,7 +52,7 @@ public class DemoApplication {
         //json = "{\"text\":\"Test Message\"}";
         json = "{\"text\":\"今日のＨＯＴ動画は\n";
         for (int i = 0; i < maxResult; i++) {
-            json += "https://youtube.com/watch?v=" + youtubeApiJson.youtubeVideoJsons[i].id + "\n";
+            json += "https://youtube.com/watch?v=" + youtubeApiJson.getYoutubeVideoJsons()[i].getId() + "\n";
         }
         json += "\"}";
 
