@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
 public class DemoApplication {
     public static void main(String[] args) {
         YoutubeApiClient youtubeApiClient = new YoutubeApiClient();
-        int maxResult = 5;
+        int maxResult = 5; //Youtubeに返事した人気動画の数です。デフォルトで5にしておきます。
         String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
         String param = "?part=id" +
                 "&key=" + args[1] +
