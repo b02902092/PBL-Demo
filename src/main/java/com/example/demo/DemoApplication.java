@@ -44,7 +44,7 @@ public class DemoApplication {
         String incomeWebhookUrl = args[0];
         json = "{\"text\":\"今日のＨＯＴ動画は\n";
         for (int i = 0; i < maxResult; i++) {
-            json += "https://youtube.com/watch?v=" + youtubeApiJson.getYoutubeVideoJsons()[i].getId() + "\n";
+            json += "https://youtube.com/watch?v=" + youtubeApiJson.getItems()[i].getId() + "\n";
         }
         json += "\"}";
 

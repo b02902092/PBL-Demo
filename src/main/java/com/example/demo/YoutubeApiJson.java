@@ -29,8 +29,7 @@ public class YoutubeApiJson {
     private String nextPageToken;
     private String prevPageToken;
     private PageInfo pageInfo;
-    @JsonProperty("items")
-    private YoutubeVideoJson[] youtubeVideoJsons;
+    private YoutubeVideoJson[] items;
 
     public void setKind (String kind) {
         this.kind = kind;
@@ -52,8 +51,8 @@ public class YoutubeApiJson {
         this.pageInfo = pageInfo;
     }
 
-    public void setYoutubeVideoJsons(YoutubeVideoJson[] youtubeVideoJsons) {
-        this.youtubeVideoJsons = youtubeVideoJsons;
+    public void setItems(YoutubeVideoJson[] items) {
+        this.items = items;
     }
 
     public String getKind() {
@@ -74,10 +73,10 @@ public class YoutubeApiJson {
     public PageInfo getPageInfo() {
         return pageInfo;
     }
-    public YoutubeVideoJson[] getYoutubeVideoJsons() {
-        return youtubeVideoJsons;
-    }
 
+    public YoutubeVideoJson[] getItems() {
+        return items;
+    }
 
     @Override
     public String toString() {
@@ -87,8 +86,8 @@ public class YoutubeApiJson {
                 ",\nnextPageToken=" + this.nextPageToken +
                 ",\nprevPageToekn=" + this.prevPageToken +
                 ",\nPageInfo=" + this.pageInfo.toString();
-        for (YoutubeVideoJson youtubeVideoJson : youtubeVideoJsons) {
-            youtubeApiJsonString += "\n" + youtubeVideoJson.toString();
+        for (YoutubeVideoJson item : items) {
+            youtubeApiJsonString += "\n" + item.toString();
         }
         youtubeApiJsonString += "}";
         return youtubeApiJsonString;
