@@ -7,10 +7,10 @@ import java.net.URL;
 
 public class YoutubeApiClient {
 
-    private static final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
+    private static final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/";
     public static String getVideos (String key, int maxResult, String regionCode) {
         URL url = null;
-        String param = "?part=id" +
+        String param = "videos?part=id" +
                 "&key=" + key +
                 "&chart=mostPopular" +
                 "&maxResults=" + maxResult +
