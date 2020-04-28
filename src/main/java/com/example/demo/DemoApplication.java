@@ -10,16 +10,12 @@ import java.io.*;
 public class DemoApplication {
     public static void main(String[] args) {
         int maxResult = 5; //Youtubeに返事した人気動画の数です。デフォルトで5にしておきます。
-        String param = "?part=id" +
-                "&key=" + args[1] +
-                "&chart=mostPopular" +
-                "&maxResults=" + maxResult +
-                "&regionCode=JP";
+
         String json = "";
 
         YoutubeApiJson youtubeApiJson = null;
         try {
-            json = YoutubeApiClient.getVideos(param);
+            json = YoutubeApiClient.getVideos(args[1], maxResult, "JP");
 
             ObjectMapper mapper = new ObjectMapper();
             youtubeApiJson = mapper.readValue(json, YoutubeApiJson.class);

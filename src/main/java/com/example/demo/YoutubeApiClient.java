@@ -8,9 +8,14 @@ import java.net.URL;
 public class YoutubeApiClient {
 
     private static final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
-    public static String getVideos (String param) {
-
+    public static String getVideos (String key, int maxResult, String regionCode) {
         URL url = null;
+        String param = "?part=id" +
+                "&key=" + key +
+                "&chart=mostPopular" +
+                "&maxResults=" + maxResult +
+                "&regionCode=" + regionCode;
+
         try {
             url = new URL(youtubeApiUrl + param);
         } catch (MalformedURLException e) {
