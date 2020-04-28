@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class YoutubeApiClient {
 
-    private static final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/";
+    private static final String YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/";
     public static String getVideos (String key, int maxResult, String regionCode) {
         URL url = null;
         String param = "videos?part=id" +
@@ -17,7 +17,7 @@ public class YoutubeApiClient {
                 "&regionCode=" + regionCode;
 
         try {
-            url = new URL(youtubeApiUrl + param);
+            url = new URL(YOUTUBE_API_URL + param);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             throw new UncheckedIOException(e);
