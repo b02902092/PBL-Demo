@@ -6,12 +6,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class YoutubeApiClient {
-    public static String getVideos (String param) {
-        final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
 
+    private static final String YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/";
+    public static String getVideos (String key, int maxResult, String regionCode) {
         URL url = null;
+        String param = "videos?part=id" +
+                "&key=" + key +
+                "&chart=mostPopular" +
+                "&maxResults=" + maxResult +
+                "&regionCode=" + regionCode;
+
         try {
-            url = new URL(youtubeApiUrl + param);
+            url = new URL(YOUTUBE_API_URL + param);
         } catch (MalformedURLException e) {
             e.printStackTrace();
             throw new UncheckedIOException(e);
