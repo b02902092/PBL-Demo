@@ -1,8 +1,5 @@
 package com.example.demo;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class YoutubeApiJson {
     public class PageInfo {
         private int totalResults;
