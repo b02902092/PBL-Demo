@@ -15,25 +15,22 @@ import java.net.UnknownHostException;
 public class DemoApplication {
     public static void main(String[] args) {
         int maxResult = 5; //Youtubeに返事した人気動画の数です。デフォルトで5にしておきます。
-        String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
         String param = "?part=id" +
                 "&key=" + args[1] +
                 "&chart=mostPopular" +
                 "&maxResults=" + maxResult +
                 "&regionCode=JP";
-        URL youtubeGetVideosUrl = null;
         String json = "";
 
         YoutubeApiJson youtubeApiJson = null;
         try {
-            youtubeGetVideosUrl = new URL(youtubeApiUrl + param);
-            json = YoutubeApiClient.getVideos(youtubeGetVideosUrl);
+            json = YoutubeApiClient.getVideos(param);
 
             ObjectMapper mapper = new ObjectMapper();
             youtubeApiJson = mapper.readValue(json, YoutubeApiJson.class);
 
             System.out.println(youtubeApiJson.toString());
-        } catch (MalformedURLException | JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
             throw new UncheckedIOException(e);
         }
