@@ -2,13 +2,23 @@ package com.example.demo;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class YoutubeApiClient {
-    public String getVideo (String param, String path) {
+    public static String getVideos (String param) {
+        final String youtubeApiUrl = "https://www.googleapis.com/youtube/v3/videos";
+
+        URL url = null;
+        try {
+            url = new URL(youtubeApiUrl + param);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            throw new UncheckedIOException(e);
+        }
+
         HttpsURLConnection uc;
         try {
-            URL url = new URL(path + param);
             uc = (HttpsURLConnection) url.openConnection();
             uc.setRequestMethod("GET");
             uc.setUseCaches(false);
