@@ -34,7 +34,7 @@ public class DemoApplication {
             youtubeApiJson = mapper.readValue(json, YoutubeApiJson.class);
 
             System.out.println(youtubeApiJson.toString());
-        } catch (IOException e) {
+        } catch (MalformedURLException | JsonProcessingException e) {
             e.printStackTrace();
             throw new UncheckedIOException(e);
         }
