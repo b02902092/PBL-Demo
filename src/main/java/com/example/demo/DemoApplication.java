@@ -28,28 +28,20 @@ public class DemoApplication {
         YoutubeApiJson youtubeApiJson = null;
         try {
             youtubeGetVideosUrl = new URL(youtubeApiUrl + param);
-            //System.out.println(youtubeGetVideosUrl.toString());
             json = youtubeApiClient.getVideos(youtubeGetVideosUrl);
-            //System.out.println("Youtube return:" + json);
 
             ObjectMapper mapper = new ObjectMapper();
             youtubeApiJson = mapper.readValue(json, YoutubeApiJson.class);
-            //System.out.println("YoutubeApiJson: " + youtubeApiJson.toString());
-        } catch (MalformedURLException e) {
+
+            System.out.println(youtubeApiJson.toString());
+        } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(); //ここは何を投げればいいですか？
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+            throw new UncheckedIOException(e);
         }
 
         SlackApiClient slackApiClient = new SlackApiClient();
 
         String incomeWebhookUrl = args[0];
-        //json = "{\"text\":\"Test Message\"}";
         json = "{\"text\":\"今日のＨＯＴ動画は\n";
         for (int i = 0; i < maxResult; i++) {
             json += "https://youtube.com/watch?v=" + youtubeApiJson.getYoutubeVideoJsons()[i].getId() + "\n";
@@ -58,18 +50,5 @@ public class DemoApplication {
 
         System.out.println(incomeWebhookUrl + '\n' + json);
         System.out.println(slackApiClient.postMessage(json, incomeWebhookUrl));
-
-/*
-        String path = "https://slack.com/api/chat.postMessage";
-        String token = "";
-        String user = "lai.ting.wei";
-        String json = "{" +
-                "\"token\"=\"" + token + "\"," +
-                "\"channel\"=\"@" + user + "\"," +
-                "\"text\"=\"" + "Hello World!" + "\"," +
-                "\"as_user\"=\"1\"" +
-                "}";*/
-
-        System.out.println("Finish");
     }
 }
