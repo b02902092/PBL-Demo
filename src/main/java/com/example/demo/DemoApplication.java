@@ -2,11 +2,9 @@ package com.example.demo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
 
-@SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
         int maxResult = 5; //Youtubeに返事した人気動画の数です。デフォルトで5にしておきます。
