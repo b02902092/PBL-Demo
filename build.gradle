@@ -1,29 +1,23 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.6.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'application'
 }
-bootRun {
-	if (project.hasProperty('args')) {    // "args" というプロパティが渡されていたら
-		args project.args.split('\\s+')   // 空白文字で split して、 run タスクの args オプションにセットする
-	}
+
+repositories {
+	mavenCentral()
+	jcenter()
 }
+
+application {
+	mainClassName = 'com.example.demo.DemoApplication'
+}
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.security:spring-security-test'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testCompile group: 'junit', name: 'junit', version: '4.12'
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
 }
 
