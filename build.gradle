@@ -17,10 +17,14 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 dependencies {
-	testCompile group: 'junit', name: 'junit', version: '4.12'
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
+	testCompile('org.apache.commons:commons-lang3:3.7')
 }
 
 test {
+	systemProperty 'slackUrl', System.getProperty('slackUrl')
+	systemProperty 'youtubeApiKey', System.getProperty('youtubeApiKey')
 	useJUnitPlatform()
 }
