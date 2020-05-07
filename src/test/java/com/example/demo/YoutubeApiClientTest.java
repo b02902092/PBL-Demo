@@ -21,9 +21,11 @@ class YoutubeApiClientTest {
 		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(randomString, 5, "JP"));
 	}
 
+	/*
+	TODO [check bad request]
 	@Test
 	void testMaxResultOver50() {
-		assertThrows(IllegalArgumentException.class, () -> YoutubeApiClient.getVideos(youtubeApiKey, 100, "JP"));
+		assertThrows(IllegalArgumentException.class, () -> YoutubeApiClient.getVideos(youtubeApiKey, 51, "JP"));
 	}
 
 	@Test
@@ -31,8 +33,6 @@ class YoutubeApiClientTest {
 		assertThrows(IllegalArgumentException.class, () -> YoutubeApiClient.getVideos(youtubeApiKey, 0, "JP"));
 	}
 
-	/*
-	TODO [How to check the region code.]
 	@RepeatedTest(10)
 	void testIllegalRegionCode() {
 		String randomString = RandomStringUtils.randomAlphanumeric(2);
