@@ -9,13 +9,11 @@ public class DemoApplication {
         SlackApiClient slackApiClient = new SlackApiClient();
 
         String incomeWebhookUrl = args[0];
-        String json = "{\"text\":\"今日のＨＯＴ動画は\n";
+        String text = "今日のHOT動画は\n";
         for (int i = 0; i < maxResult; i++) {
-            json += videos[i];
+            text += videos[i];
         }
-        json += "\"}";
 
-        System.out.println(incomeWebhookUrl + '\n' + json);
-        System.out.println(slackApiClient.postMessage(json, incomeWebhookUrl));
+        System.out.println(slackApiClient.postMessage(text, incomeWebhookUrl));
     }
 }

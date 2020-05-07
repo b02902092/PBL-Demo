@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.URL;
 
 public class SlackApiClient {
-    public String postMessage(String json, String path) {
+    public String postMessage(String text, String path) {
         HttpsURLConnection uc;
         try {
             URL url = new URL(path);
@@ -20,6 +20,7 @@ public class SlackApiClient {
 
         try (OutputStreamWriter out = new OutputStreamWriter(
                 new BufferedOutputStream(uc.getOutputStream()))) {
+            String json = "{\"text\":\"" + text + "\"}";
             out.write(json);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
