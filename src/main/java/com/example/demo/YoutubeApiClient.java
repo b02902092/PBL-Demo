@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.MalformedURLException;
@@ -8,7 +10,7 @@ import java.net.URL;
 public class YoutubeApiClient {
 
     private static final String YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/";
-    public static String getVideos (String key, int maxResult, String regionCode) {
+    public static String[] getVideos (String key, int maxResult, String regionCode) {
         URL url = null;
         String param = "videos?part=id" +
                 "&key=" + key +
@@ -41,7 +43,18 @@ public class YoutubeApiClient {
                 line = in.readLine();
             }
             uc.disconnect();
-            return body;
+
+            ObjectMapper mapper = new ObjectMapper();
+            YoutubeApiJson youtubeApiJson = mapper.readValue(body, YoutubeApiJson.class);
+
+            String[] videos = new String[maxResult];
+            String youtubeUrl = "https://youtube.com/watch?v=";
+
+            for(int i = 0; i < maxResult; i++) {
+                videos[i] = youtubeUrl + youtubeApiJson.getItems()[i].getId() + "\n";
+            }
+
+            return videos;
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
