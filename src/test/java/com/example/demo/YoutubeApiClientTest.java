@@ -7,7 +7,7 @@ import java.io.UncheckedIOException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class YoutubeApiClientTests {
+class YoutubeApiClientTest {
 	static String youtubeApiKey = System.getProperty("youtubeApiKey");
 
 	@Test
