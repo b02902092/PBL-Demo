@@ -14,7 +14,7 @@ class YoutubeApiClientTests {
 
 	@Test
 	void testNullKey() {
-		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos("", 5, "JP"));
+		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(null, 5, "JP"));
 	}
 
 	@RepeatedTest(10)
