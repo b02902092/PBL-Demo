@@ -29,7 +29,7 @@ class YoutubeApiClientTests {
 	}
 
 	@Test
-	void testMaxResultIs0() {
+	void testMaxResultBelow0() {
 		assertThrows(IllegalArgumentException.class, () -> YoutubeApiClient.getVideos(youtubeApiKey, 0, "JP"));
 	}
 
