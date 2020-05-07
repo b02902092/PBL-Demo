@@ -1,9 +1,7 @@
 package com.example.demo;
 
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
-
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Test;
 
 import java.io.UncheckedIOException;
 
@@ -17,7 +15,7 @@ class YoutubeApiClientTests {
 		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(null, 5, "JP"));
 	}
 
-	@RepeatedTest(10)
+	@Test
 	void testRandomKey() {
 		String randomString = RandomStringUtils.randomAlphanumeric(youtubeApiKey.length());
 		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(randomString, 5, "JP"));
