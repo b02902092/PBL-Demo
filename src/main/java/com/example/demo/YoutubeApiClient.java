@@ -9,11 +9,6 @@ public class YoutubeApiClient {
 
     private static final String YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/";
     public static String getVideos (String key, int maxResult, String regionCode) {
-        if (maxResult <= 0 | maxResult > 50) {
-            System.out.println("maxResult should be 1-50.");
-            throw new IllegalArgumentException();
-        }
-        
         URL url = null;
         String param = "videos?part=id" +
                 "&key=" + key +
