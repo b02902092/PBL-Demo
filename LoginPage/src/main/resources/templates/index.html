@@ -8,6 +8,7 @@
 <h1>Sign up</h1>
 <form action="#" th:action="@{/index}" th:object="${userProfile}" method="post">
     <p>slack id: <input type="text" th:field="*{name}" /></p>
+    <p>How much famous youtube videos every day you want to know?: <input type="text" th:field="*{maxResult}" /></p>
     <p>country: <input type="text" th:field="*{country}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
