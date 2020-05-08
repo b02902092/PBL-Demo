@@ -9,8 +9,8 @@ import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class YoutubeApiClient {
 
@@ -52,12 +52,9 @@ public class YoutubeApiClient {
             ObjectMapper mapper = new ObjectMapper();
             YoutubeApiJson youtubeApiJson = mapper.readValue(body, YoutubeApiJson.class);
 
-            List<String> videos = new ArrayList<String>();
             String youtubeUrl = "https://youtube.com/watch?v=";
 
-            for(int i = 0; i < maxResult; i++) {
-                videos.add(youtubeUrl + youtubeApiJson.getItems()[i].getId());
-            }
+            List<String> videos = youtubeApiJson.getItems().stream().map(item -> youtubeUrl + item.getId()).collect(Collectors.toList());
 
             return videos;
         } catch (IOException e) {

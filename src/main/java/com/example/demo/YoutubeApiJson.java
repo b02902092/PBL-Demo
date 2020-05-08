@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 public class YoutubeApiJson {
     public class PageInfo {
         private int totalResults;
@@ -26,7 +28,7 @@ public class YoutubeApiJson {
     private String nextPageToken;
     private String prevPageToken;
     private PageInfo pageInfo;
-    private YoutubeVideoJson[] items;
+    private List<YoutubeVideoJson> items;
 
     public void setKind (String kind) {
         this.kind = kind;
@@ -48,7 +50,7 @@ public class YoutubeApiJson {
         this.pageInfo = pageInfo;
     }
 
-    public void setItems(YoutubeVideoJson[] items) {
+    public void setItems(List<YoutubeVideoJson> items) {
         this.items = items;
     }
 
@@ -71,7 +73,7 @@ public class YoutubeApiJson {
         return pageInfo;
     }
 
-    public YoutubeVideoJson[] getItems() {
+    public List<YoutubeVideoJson> getItems() {
         return items;
     }
 
