@@ -11,10 +11,10 @@ public class DemoApplication {
         SlackApiClient slackApiClient = new SlackApiClient();
 
         String incomeWebhookUrl = args[0];
-        String text = "今日のHOT動画は\n";
-        for (int i = 0; i < maxResult; i++) {
-            text += videos.get(i) + "\n";
-        }
+        String text = videos.stream().reduce(
+                "今日のHOT動画は\n", (String joined, String element) -> {
+                    return joined + element + "\n";
+                });
 
         System.out.println(slackApiClient.postMessage(text, incomeWebhookUrl));
     }
