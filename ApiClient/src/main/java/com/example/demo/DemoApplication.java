@@ -10,12 +10,14 @@ public class DemoApplication {
 
         SlackApiClient slackApiClient = new SlackApiClient();
 
-        String incomeWebhookUrl = args[0];
+        String slackApiUrl = "https://slack.com/api/chat.postMessage";
+        String userName = "lai.ting.wei";
+        String token = args[0];
         String text = videos.stream().reduce(
                 "今日のHOT動画は\n", (String joined, String element) -> {
                     return joined + element + "\n";
                 });
 
-        System.out.println(slackApiClient.postMessage(text, incomeWebhookUrl));
+        System.out.println(slackApiClient.postMessage(text, slackApiUrl, userName, token));
     }
 }

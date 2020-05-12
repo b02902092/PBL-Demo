@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.URL;
 
 public class SlackApiClient {
-    public String postMessage(String text, String path) {
+    public String postMessage(String text, String path, String userName, String token) {
         HttpsURLConnection uc;
         try {
             URL url = new URL(path);
@@ -14,13 +14,15 @@ public class SlackApiClient {
             uc.setUseCaches(false);
             uc.setDoOutput(true);
             uc.setRequestProperty("Content-Type", "application/json");
+            uc.setRequestProperty("Authorization", "Bearer " + token);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
 
         try (OutputStreamWriter out = new OutputStreamWriter(
                 new BufferedOutputStream(uc.getOutputStream()))) {
-            String json = "{\"text\":\"" + text + "\"}";
+            String json = "{\"channel\":\"@"+ userName + "\"," +
+                    "\"text\":\"" + text + "\"}";
             out.write(json);
         } catch (IOException e) {
             throw new UncheckedIOException(e);
