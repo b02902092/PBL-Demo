@@ -21,7 +21,7 @@ public class SlackApiClient {
 
         try (OutputStreamWriter out = new OutputStreamWriter(
                 new BufferedOutputStream(uc.getOutputStream()))) {
-            String json = "{\"channel\":\"@"+ userName + "\"," +
+            String json = "{\"channel\":\"@" + userName + "\"," +
                     "\"text\":\"" + text + "\"}";
             out.write(json);
         } catch (IOException e) {

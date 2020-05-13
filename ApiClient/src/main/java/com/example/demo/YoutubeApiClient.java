@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 public class YoutubeApiClient {
 
     private static final String YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/";
-    public static List<String> getVideos (String key, int maxResult, String regionCode) {
+
+    public static List<String> getVideos(String key, int maxResult, String regionCode) {
         URL url = null;
         String param = "videos?part=id" +
                 "&key=" + key +
@@ -39,8 +40,8 @@ public class YoutubeApiClient {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
-        
-        try(BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()))) {
+
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()))) {
             String line = in.readLine();
             String body = "";
             while (line != null) {

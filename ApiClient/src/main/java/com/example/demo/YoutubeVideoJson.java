@@ -9,20 +9,20 @@ public class YoutubeVideoJson {
         return kind;
     }
 
-    public String getEtag() {
-        return etag;
-    }
-
-    public String getId() {
-        return id;
-    }
-
     public void setKind(String kind) {
         this.kind = kind;
     }
 
+    public String getEtag() {
+        return etag;
+    }
+
     public void setEtag(String etag) {
         this.etag = etag;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void setId(String id) {
