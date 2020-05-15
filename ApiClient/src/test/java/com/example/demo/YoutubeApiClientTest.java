@@ -8,18 +8,18 @@ import java.io.UncheckedIOException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class YoutubeApiClientTest {
-	static String youtubeApiKey = System.getProperty("youtubeApiKey");
+    static String youtubeApiKey = System.getProperty("youtubeApiKey");
 
-	@Test
-	void testNullKey() {
-		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(null, 5, "JP"));
-	}
+    @Test
+    void testNullKey() {
+        assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(null, 5, "JP"));
+    }
 
-	@Test
-	void testRandomKey() {
-		String randomString = RandomStringUtils.randomAlphanumeric(youtubeApiKey.length());
-		assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(randomString, 5, "JP"));
-	}
+    @Test
+    void testRandomKey() {
+        String randomString = RandomStringUtils.randomAlphanumeric(youtubeApiKey.length());
+        assertThrows(UncheckedIOException.class, () -> YoutubeApiClient.getVideos(randomString, 5, "JP"));
+    }
 
 	/*
 	TODO [check bad request]

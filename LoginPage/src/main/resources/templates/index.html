@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Sign up</h1>
+<form action="#" th:action="@{/index}" th:object="${userProfile}" method="post">
+    <p>slack id: <input type="text" th:field="*{name}" required="required"/></p>
+    <p>How much famous youtube videos every day you want to know?[1-50]:
+        <input type="number" min=1 max=50 th:field="*{maxResult}" required="required"/>
+    </p>
+    <p>
+        country: <select th:field="*{country}">
+        <option value="TW">TW</option>
+        <option value="JP">JP</option>
+        <option value="US">US</option>
+        </select>
+    </p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

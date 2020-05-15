@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Hello!</h1>
+<p th:text="'Hello:' + ${userProfile.name}" />
+<p th:text="'Country:' + ${userProfile.country}" />
+<p th:text="'MaxResult:' + ${userProfile.maxResult}" />
+<a href="/index">Top</a>
+</body>
+</html>
