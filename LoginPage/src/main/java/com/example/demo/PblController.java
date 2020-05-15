@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PblController {
@@ -46,9 +45,7 @@ public class PblController {
         return "message";
     }
 
-    @GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<UserProfile> getAllUsers() {
+    private Iterable<UserProfile> getAllUsers() {
         return userRepository.findAll();
     }
 
