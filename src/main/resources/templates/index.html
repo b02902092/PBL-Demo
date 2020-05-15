@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h1>Sign up</h1>
@@ -12,13 +12,13 @@
         <input type="number" min=1 max=50 th:field="*{maxResult}" required="required"/>
     </p>
     <p>
-        country: <select th:field="*{country}">
-        <option value="TW">TW</option>
-        <option value="JP">JP</option>
-        <option value="US">US</option>
-        </select>
+        country: <select name="country">
+        <option th:each="country : ${countries}"
+                th:value="${country.country}" th:text="${country.country}">
+        </option>
+    </select>
     </p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
 </form>
 </body>
 </html>
