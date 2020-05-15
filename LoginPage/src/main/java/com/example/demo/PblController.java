@@ -53,7 +53,7 @@ public class PblController {
     }
 
 
-    @Scheduled(cron = "0 9 * * * *")
+    @Scheduled(cron = "0 0 9 * * *")
     public void sendHotYoutubeVideosToAll() {
         for (UserProfile u : this.getAllUsers()) {
             sendHotYoutubeVideos(u);
