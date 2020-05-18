@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Sign up</h1>
-<form action="#" th:action="@{/index}" th:object="${userProfile}" method="post">
+<form action="#" th:action="@{/signUp}" th:object="${userProfile}" method="post">
     <p>slack id: <input type="text" th:field="*{name}" required="required"/></p>
     <p>How much famous youtube videos every day you want to know?[1-50]:
         <input type="number" min=1 max=50 th:field="*{maxResult}" required="required"/>

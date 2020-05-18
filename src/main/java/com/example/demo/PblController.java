@@ -24,18 +24,18 @@ public class PblController {
 
     @GetMapping(value = "/")
     public String root() {
-        return "redirect:/index";
+        return "redirect:/signIn";
     }
 
-    @GetMapping(value = "/index")
-    public String sayHelloForm(Model model) {
+    @GetMapping(value = "/signUp")
+    public String signUpForm(Model model) {
         model.addAttribute("userProfile", new UserProfile());
         model.addAttribute("countries", CountryCodes.values());
-        return "index";
+        return "signUp";
     }
 
-    @PostMapping(value = "/index")
-    public String sayHello(@ModelAttribute UserProfile userProfile, Model model) {
+    @PostMapping(value = "/signUp")
+    public String signUp(@ModelAttribute UserProfile userProfile, Model model) {
         model.addAttribute("userProfile", userProfile);
         if (userRepository.findByName(userProfile.getName()) != null) {
             Integer id = userRepository.findByName(userProfile.getName()).getId();
@@ -46,10 +46,22 @@ public class PblController {
         return "message";
     }
 
+    @GetMapping(value = "/signIn")
+    public String signInForm(Model model) {
+        model.addAttribute("userProfile", new UserProfile());
+        return "signIn";
+    }
+
+    @PostMapping(value = "/signIn")
+    public String signIn(@ModelAttribute UserProfile userProfile, Model model) {
+        userProfile = userRepository.findByName(userProfile.getName());
+        model.addAttribute("userProfile", userProfile);
+        return "message";
+    }
+
     private Iterable<UserProfile> getAllUsers() {
         return userRepository.findAll();
     }
-
 
     @Scheduled(cron = "0 0 9 * * *")
     public void sendHotYoutubeVideosToAll() {
