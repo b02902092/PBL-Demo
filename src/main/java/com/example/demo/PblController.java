@@ -30,6 +30,7 @@ public class PblController {
     @GetMapping(value = "/index")
     public String sayHelloForm(Model model) {
         model.addAttribute("userProfile", new UserProfile());
+        model.addAttribute("countries", CountryCodes.values());
         return "index";
     }
 
