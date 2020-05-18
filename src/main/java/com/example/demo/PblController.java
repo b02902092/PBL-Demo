@@ -55,8 +55,13 @@ public class PblController {
     @PostMapping(value = "/signIn")
     public String signIn(@ModelAttribute UserProfile userProfile, Model model) {
         userProfile = userRepository.findByName(userProfile.getName());
-        model.addAttribute("userProfile", userProfile);
-        return "message";
+        if (userProfile != null) {
+            model.addAttribute("userProfile", userProfile);
+            return "message";
+        }
+        else {
+            return "noThisAccount";
+        }
     }
 
     private Iterable<UserProfile> getAllUsers() {
