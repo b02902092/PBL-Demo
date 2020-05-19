@@ -37,7 +37,6 @@ public class PblController {
 
     @PostMapping(value = "/signUp")
     public String signUp(@ModelAttribute UserProfile userProfile, Model model) {
-        model.addAttribute("userProfile", userProfile);
         userProfile.setPassword(DigestUtils.sha256Hex(userProfile.getPassword()));
         if (userRepository.findByName(userProfile.getName()) != null) {
             Integer id = userRepository.findByName(userProfile.getName()).getId();
