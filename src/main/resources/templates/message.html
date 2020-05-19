@@ -2,19 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Profile</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body>
 <h1>Success!</h1>
-<p th:text="'Name:' + ${userProfile.name}" />
-<p th:text="'Country:' + ${userProfile.country}" />
-<p th:text="'MaxResult:' + ${userProfile.maxResult}" />
+<p th:text="'Name:' + ${userProfile.name}"/>
+<p th:text="'Country:' + ${userProfile.country}"/>
+<p th:text="'MaxResult:' + ${userProfile.maxResult}"/>
 <a href="/signIn">Top</a>
 <a href="/signUp">Update</a>
 <a href="" onclick="document.delete.submit(); return false;">Delete</a>
-<form name="delete" action="#" th:action="@{/delete}" th:object="${userProfile}" method="post">
-    <input type="hidden" th:field="*{name}">
-    <input type="hidden" th:field="*{id}">
+<form action="#" method="post" name="delete" th:action="@{/delete}" th:object="${userProfile}">
+    <input th:field="*{name}" type="hidden">
+    <input th:field="*{id}" type="hidden">
 </form>
 </body>
 </html>

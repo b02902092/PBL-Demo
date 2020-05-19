@@ -2,22 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body>
 <h1>Sign up</h1>
-<form action="#" th:action="@{/signUp}" th:object="${userProfile}" method="post">
-    <p>slack id: <input type="text" th:field="*{name}" required="required"/></p>
+<form action="#" method="post" th:action="@{/signUp}" th:object="${userProfile}">
+    <p>slack id: <input required="required" th:field="*{name}" type="text"/></p>
     <p>password(6-20 alphabets or numbers):
-        <input type="password" th:field="*{password}" required="required" minlength="6" maxlength="20" pattern="[a-zA-Z0-9]+">
+        <input maxlength="20" minlength="6" pattern="[a-zA-Z0-9]+" required="required" th:field="*{password}"
+               type="password">
     </p>
     <p>How much famous youtube videos every day you want to know?[1-50]:
-        <input type="number" min=1 max=50 th:field="*{maxResult}" required="required"/>
+        <input max=50 min=1 required="required" th:field="*{maxResult}" type="number"/>
     </p>
     <p>
         country: <select name="country">
         <option th:each="country : ${countries}"
-                th:value="${country.country}" th:text="${country.country}">
+                th:text="${country.country}" th:value="${country.country}">
         </option>
     </select>
     </p>
