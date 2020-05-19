@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.api.SlackApiClient;
 import com.example.api.YoutubeApiClient;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class PblController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthRepository authRepository;
 
     @Value("${slackApiToken}")
     private String slackApiToken;
@@ -42,9 +46,30 @@ public class PblController {
             Integer id = userRepository.findByName(userProfile.getName()).getId();
             userProfile.setId(id);
         }
-        userRepository.save(userProfile);
-        sendHotYoutubeVideos(userProfile);
-        return "message";
+        model.addAttribute("userProfile", userProfile);
+        model.addAttribute("authData", new AuthData());
+
+        String token = RandomStringUtils.randomNumeric(5);
+        AuthData authData = new AuthData();
+        authData.setName(userProfile.getName());
+        authData.setAuthToken(token);
+        authRepository.save(authData);
+        sendToken(userProfile, token);
+        return "auth";
+    }
+
+    @PostMapping(value = "/auth")
+    public String auth(@ModelAttribute UserProfile userProfile, @ModelAttribute AuthData authData, Model model) {
+        String answerToken = authRepository.findByName(authData.getName()).getAuthToken();
+        if (answerToken.equals(authData.getAuthToken())) {
+            userRepository.save(userProfile);
+            sendHotYoutubeVideos(userProfile);
+            model.addAttribute("userProfile", userProfile);
+            authRepository.delete(authRepository.findByName(authData.getName()));
+            return "message";
+        } else {
+            return "auth";
+        }
     }
 
     @GetMapping(value = "/signIn")
@@ -91,6 +116,13 @@ public class PblController {
                         "今日のHOT動画は\n", (String joined, String element) -> {
                             return joined + element + "\n";
                         });
+        SlackApiClient slackApiClient = new SlackApiClient();
+        slackApiClient.postMessage(text, slackApiUrl, userProfile.getName(), slackApiToken);
+    }
+
+    private void sendToken(UserProfile userProfile, String token) {
+        String slackApiUrl = "https://slack.com/api/chat.postMessage";
+        String text = "Your authenticate token is " + token;
         SlackApiClient slackApiClient = new SlackApiClient();
         slackApiClient.postMessage(text, slackApiUrl, userProfile.getName(), slackApiToken);
     }
