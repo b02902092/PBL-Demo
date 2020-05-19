@@ -64,6 +64,15 @@ public class PblController {
         }
     }
 
+    @PostMapping(value = "/delete")
+    public String delete(@ModelAttribute UserProfile userProfile, Model model) {
+        if (userRepository.findByName(userProfile.getName()) != null) {
+            userRepository.deleteById(userProfile.getId());
+        }
+        model.addAttribute("userProfile", userProfile);
+        return "delete";
+    }
+
     private Iterable<UserProfile> getAllUsers() {
         return userRepository.findAll();
     }
