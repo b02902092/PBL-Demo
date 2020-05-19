@@ -10,6 +10,7 @@
 <p th:text="'Country:' + ${userProfile.country}" />
 <p th:text="'MaxResult:' + ${userProfile.maxResult}" />
 <a href="/signIn">Top</a>
+<a href="/signUp">Update</a>
 <a href="" onclick="document.delete.submit(); return false;">Delete</a>
 <form name="delete" action="#" th:action="@{/delete}" th:object="${userProfile}" method="post">
     <input type="hidden" th:field="*{name}">
