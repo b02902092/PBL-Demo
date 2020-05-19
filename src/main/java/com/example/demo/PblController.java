@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.api.SlackApiClient;
 import com.example.api.YoutubeApiClient;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -37,6 +38,7 @@ public class PblController {
     @PostMapping(value = "/signUp")
     public String signUp(@ModelAttribute UserProfile userProfile, Model model) {
         model.addAttribute("userProfile", userProfile);
+        userProfile.setPassword(DigestUtils.sha256Hex(userProfile.getPassword()));
         if (userRepository.findByName(userProfile.getName()) != null) {
             Integer id = userRepository.findByName(userProfile.getName()).getId();
             userProfile.setId(id);
@@ -54,13 +56,12 @@ public class PblController {
 
     @PostMapping(value = "/signIn")
     public String signIn(@ModelAttribute UserProfile userProfile, Model model) {
-        userProfile = userRepository.findByName(userProfile.getName());
-        if (userProfile != null) {
-            model.addAttribute("userProfile", userProfile);
+        UserProfile foundUser = userRepository.findByName(userProfile.getName());
+        if (foundUser != null && foundUser.getPassword().equals(DigestUtils.sha256Hex(userProfile.getPassword()))) {
+            model.addAttribute("userProfile", foundUser);
             return "message";
-        }
-        else {
-            return "noThisAccount";
+        } else {
+            return "loginFail";
         }
     }
 
