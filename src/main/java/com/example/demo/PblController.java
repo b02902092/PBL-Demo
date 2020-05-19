@@ -67,7 +67,7 @@ public class PblController {
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute UserProfile userProfile, Model model) {
         if (userRepository.findByName(userProfile.getName()) != null) {
-            userRepository.delete(userProfile);
+            userRepository.deleteById(userProfile.getId());
         }
         model.addAttribute("userProfile", userProfile);
         return "delete";

@@ -13,8 +13,6 @@
 <a href="" onclick="document.delete.submit(); return false;">Delete</a>
 <form name="delete" action="#" th:action="@{/delete}" th:object="${userProfile}" method="post">
     <input type="hidden" th:field="*{name}">
-    <input type="hidden" th:field="*{country}">
-    <input type="hidden" th:field="*{maxResult}">
     <input type="hidden" th:field="*{id}">
 </form>
 </body>
