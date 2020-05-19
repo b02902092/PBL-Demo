@@ -49,8 +49,12 @@ public class PblController {
         model.addAttribute("userProfile", userProfile);
         model.addAttribute("authData", new AuthData());
 
+        AuthData authData = authRepository.findByName(userProfile.getName());
+        if (authData != null) {
+            authRepository.delete(authData);
+        }
         String token = RandomStringUtils.randomNumeric(5);
-        AuthData authData = new AuthData();
+        authData = new AuthData();
         authData.setName(userProfile.getName());
         authData.setAuthToken(token);
         authRepository.save(authData);
