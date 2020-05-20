@@ -5,10 +5,10 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 <body>
-<h1>Success!</h1>
-<p th:text="'Name:' + ${userProfile.name}"/>
-<p th:text="'Country:' + ${userProfile.country}"/>
-<p th:text="'MaxResult:' + ${userProfile.maxResult}"/>
+<h1>User Profile</h1>
+<p th:text="'Name: ' + ${userProfile.name}"/>
+<p th:text="'Country: ' + ${userProfile.country}"/>
+<p th:text="'MaxResult: ' + ${userProfile.maxResult}"/>
 <a href="/signIn">Top</a>
 <a href="/signUp">Update</a>
 <a href="" onclick="document.delete.submit(); return false;">Delete</a>

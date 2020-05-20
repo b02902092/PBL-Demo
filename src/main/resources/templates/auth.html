@@ -6,9 +6,6 @@
 </head>
 <body>
 <h1>Auth</h1>
-<p th:text="'Name:' + ${userProfile.name}"/>
-<p th:text="'Country:' + ${userProfile.country}"/>
-<p th:text="'MaxResult:' + ${userProfile.maxResult}"/>
 <form action="#" method="post" th:action="@{/auth}" th:object="${authData}">
     <input name="id" th:value="${userProfile.id}" type="hidden"/>
     <input name="name" th:value="${userProfile.name}" type="hidden"/>
