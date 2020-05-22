@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Auth</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<h1>Auth</h1>
+<form action="#" method="post" th:action="@{/auth}" th:object="${authData}">
+    <input name="id" th:value="${userProfile.id}" type="hidden"/>
+    <input name="name" th:value="${userProfile.name}" type="hidden"/>
+    <input name="country" th:value="${userProfile.country}" type="hidden">
+    <input name="password" th:value="${userProfile.password}" type="hidden">
+    <input name="maxResult" th:value="${userProfile.maxResult}" type="hidden">
+    <p>token: <input maxlength="5" required="required" th:field="*{authToken}" type="text"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>
